@@ -133,8 +133,7 @@ declare module 'binance-api-node' {
     COMPLETED = 6,
   }
 
-  export interface WithdrawHistoryResponse {
-    withdrawList: {
+  export interface Withdrawal {
     id: string
     amount: number
     transactionFee: number
@@ -143,7 +142,10 @@ declare module 'binance-api-node' {
     txId: string
     applyTime: number
     status: WithdrawStatus
-    }[]
+  }
+
+  export interface WithdrawHistoryResponse {
+    withdrawList: Withdrawal[]
     success: boolean
   }
 
