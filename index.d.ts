@@ -135,14 +135,14 @@ declare module 'binance-api-node' {
 
   export interface WithdrawHistoryResponse {
     withdrawList: {
-      id: string
-      amount: number
-      transactionFee: number
-      address: string
-      asset: string
-      txId: string
-      applyTime: number
-      status: WithdrawStatus
+    id: string
+    amount: number
+    transactionFee: number
+    address: string
+    asset: string
+    txId: string
+    applyTime: number
+    status: WithdrawStatus
     }[]
     success: boolean
   }
@@ -158,6 +158,44 @@ declare module 'binance-api-node' {
         depositTip?: string
       }
     }
+  }
+
+  export interface AssetConfig {
+    coin: string
+    depositAllEnable: boolean
+    withdrawAllEnable: boolean
+    name: string
+    free: string
+    locked: string
+    freeze: string
+    withdrawing: string
+    ipoing: string
+    ipoable: string
+    storage: string
+    isLegalMoney: boolean
+    trading: boolean
+    networkList: AssetNetworkConfig[]
+  }
+
+  export interface AssetNetworkConfig {
+    network: string
+    coin: string
+    withdrawIntegerMultiple: string
+    isDefault: boolean
+    depositEnable: boolean
+    withdrawEnable: boolean
+    depositDesc?: string
+    withdrawDesc?: string
+    specialTips?: string
+    name: string
+    resetAddressStatus: boolean
+    addressRegex: string
+    memoRegex: string
+    withdrawFee: string
+    withdrawMin: string
+    withdrawMax: string
+    minConfirm: number
+    unLockConfirm: number
   }
 
   export type GetOrderOptions = {symbol: string, orderId: number} | {symbol: string, origClientOrderId: string}
@@ -227,6 +265,7 @@ declare module 'binance-api-node' {
       name?: string
     }): Promise<WithrawResponse>
     assetDetail(): Promise<AssetDetail>
+    capitalConfigs(): Promise<AssetConfig[]>
     withdrawHistory(options: {
       asset: string
       status?: number
