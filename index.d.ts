@@ -269,7 +269,7 @@ declare module 'binance-api-node' {
     assetDetail(): Promise<AssetDetail>
     capitalConfigs(): Promise<AssetConfig[]>
     withdrawHistory(options: {
-      asset: string
+      asset?: string
       status?: number
       startTime?: number
       endTime?: number
